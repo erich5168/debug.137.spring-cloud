@@ -9,17 +9,17 @@ After calling POST `http://localhost:8012/actuator/busrefresh`
 ## Get Started
 1. `ConfigServer` > `application.properties`
 Modify to your own git repo
-```aidl
+```text
 spring.cloud.config.server.git.username=
 spring.cloud.config.server.git.password=
 ```
 
 2. Start application sequence
- - ConfigServer
- - PhotoDiscovery
- - Debug mode : ApiGateway 
+ 1.ConfigServer
+ 2. PhotoDiscovery
+ 3. Debug mode : ApiGateway 
    - Breakpoint: AuthorizationHeaderFilter | 133
- - Debug mode : ApiUser
+ 4. Debug mode : ApiUser
    - Breakpoint: AuthenticationFilter | 133
    - Breakpoint: UsersController | 37
  
