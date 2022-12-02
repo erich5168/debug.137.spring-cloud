@@ -1,0 +1,47 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.6'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.appsdeveloperblog.photo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2021.0.1")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// Keep in mind this microservice is not a Client of ConfigServer
+	// You will need the following to grabe properties from Git Repo
+	// 130. ApiUser as a client of ConfigServer
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bootstrap
+	// implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap'
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config
+	// implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config'
+
+	// 133. Spring-Cloud-Bus
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bus-amqp
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bus-amqp'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

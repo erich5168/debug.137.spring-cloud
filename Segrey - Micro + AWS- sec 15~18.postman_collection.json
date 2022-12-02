@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "1b136f4d-4dc8-41c2-91d5-48fa88d1c76b",
+		"name": "Segrey - Micro + AWS: sec 15~18",
+		"description": "Api-Gateway\n\nAutomatic Mapping `gateway.discovery.locator` has been disabled in the `application.properties`.\n\nSpecific code to dispable autoMap.\n\n```\n##  Automatic Mapping\n#spring.cloud.gateway.discovery.locator.enabled=true\n#spring.cloud.gateway.discovery.locator.lower-case-service-id=true\n\n```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2771720"
+	},
+	"item": [
+		{
+			"name": "API-Gateway- require Authorization in Header",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5YWY2MjRlMi1kNTZmLTQ4NGEtODI4NS1iMzhhNDA4NWE1MmUiLCJleHAiOjE2Njk1MzYwOTN9.a2ZD1Vf0oNTglyh0OWrG2zxpmRXpYjA66t1ox_RUT2X4EKlOOxSsavz83T1S3Pm2gzrjhua7FmlZK85u4xS_cg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/users/status/ok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"users",
+						"status",
+						"ok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API-Gateway-User : POST save new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"Sergey\",\n    \"lastname\": \"Kargopolov\",\n    \"password\": \"123\",\n    \"email\" : \"test@test.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API-Gateway-User: POST login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"test@test.com\",\n    \"password\" : \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Spring-Cloud-Bus: busrefresh",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8012/actuator/busrefresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8012",
+					"path": [
+						"actuator",
+						"busrefresh"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

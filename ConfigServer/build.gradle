@@ -1,0 +1,38 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.6.6'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group = 'com.appsdeveloperblog.photo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2021.0.1")
+}
+
+dependencies {
+	// implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.cloud:spring-cloud-config-server'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// Spring-Cloud-Bus
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bus-amqp
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bus-amqp'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
